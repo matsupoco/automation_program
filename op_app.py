@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[71]:
-
-
 import pandas as pd
 import time
 from selenium.webdriver.common.keys import Keys
@@ -25,10 +22,7 @@ import numpy as np
 import threading
 
 #レジのログイン画面のURL
-url = 'http://10.0.1.11/Login/login'
-
-
-# In[72]:
+url = 'URL'
 
 
 #ファイル参照
@@ -43,9 +37,6 @@ def open_folder():
     iDir = os.path.abspath(os.path.dirname('__file__'))
     folderpath = filedialog.askdirectory(initialdir = iDir)
     path2.set(folderpath)
-
-
-# In[69]:
 
 
 #自動入力
@@ -156,10 +147,8 @@ def auto_work(user_id,password,file,folder):
         skip_data.to_excel(folder+'/'+'error_data.xls',index=False)
         messagebox.showinfo('WARNING', '処理されていないデータがあります')
     driver.quit()
-
-
-# In[70]:
-
+    
+# GUI画面の設定
 
 root = tkinter.Tk()
 # ウィンドウのタイトルを指定する
@@ -196,7 +185,7 @@ label2.grid(
 input_password = tkinter.Entry(width=90)
 input_password.grid(row=1, column=1)
 
-#Excel file 読み込み
+#Excel file 読み込み欄
 label3 =tkinter.Label(
     root,
     font = font,
@@ -220,11 +209,11 @@ label4.grid(
     row = 3,
     column = 0,
 )
-
 path2 = StringVar()
 folder_path = ttk.Entry(textvariable=path2, width=90)
 folder_path.grid(row=3, column=1)
 
+#プログラム実行中に表示するプログレスバーの設定
 label5 = tkinter.Label(
     root,
     font = font,
@@ -235,6 +224,7 @@ progressbar = ttk.Progressbar(
     length=400,
     mode="indeterminate",
 )
+
 
 #実行ボタンを押したときに実行される関数    
 def click_func():
@@ -261,11 +251,11 @@ def click_func():
     progressbar.grid_forget()
     messagebox.showinfo('FileReference Tool', '完了')    
 
+    
 #実行す処理を別スレッドで処理
 def start_thread1():
     thread1 = threading.Thread(target=click_func)
     thread1.start()
-    
     
     
 #各ボタンの関数の割り当て    
@@ -288,19 +278,6 @@ button2_2 = tkinter.Button(
     command = start_thread1)
 button2_2.grid(row=3, column=3)
 
-
-
 root.mainloop()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
 
 
